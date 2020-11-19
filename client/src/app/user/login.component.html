@@ -1,0 +1,53 @@
+<div class="card">
+  <div class="card-header">
+    Log In
+  </div>
+  <div class="card-body">
+    <form [formGroup] = "loginForm">
+      <div class="form-group-row row mb-2">
+        <label class="col-md-2" for = "userNameId">
+          User Name
+        </label>
+        <div class="col-md-8">
+          <input class="form-control"
+                id = "userNameId"
+                  type="text" 
+                  placeholder="User Name" 
+                  formControlName="username"/>
+        </div>
+      </div>
+      <div class = "form-group-row row mb-2">
+        <label class="col-md-2" for = "passwordId">
+          Password
+        </label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id = "passwordId"
+                 type="password" 
+                 placeholder="Password" 
+                 formControlName="password"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 offset-md-2">
+          <button class="btn btn-primary mr-3"
+                  type="submit"
+                  style="width:80px"
+                  [disabled]="!loginForm.valid"
+                  (click) = "login()">
+            Log In
+          </button>
+          <button class="btn btn-outline-secondary"
+                  type="button"
+                  style="width:80px"
+                  [routerLink] = "['/welcome']">
+            Cancel
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+</div>

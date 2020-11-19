@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-header">
+        Create a new playlist
+    </div>
+    <div class="card-body">
+        <form [formGroup]="playlistForm">
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label" for="titleId">Title</label>
+                <div class="col-md-8">
+                    <input class="form-control" formControlName="title" id="titleId"
+                        placeholder="Add title here" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label" for="descriptionId">Description</label>
+                <div class="col-md-8">
+                    <input class="form-control" formControlName="description" id="descriptionId"
+                        placeholder="Add description here" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="list-group">
+        <li *ngFor="let song of songs"  [ngClass]="{'active' : isSongSelected(song.id)}" class="list-group-item list-group-item-action" (click) = "selectSong(song.id)">
+          {{song.songTitle}}
+        </li>
+    </div>
+    <div class="card-footer">
+        <div class="row md-2">
+            <div class="col-md-4">
+                <button class="btn btn-primary mr-3"  type="button" title="Post the review here"
+                    (click)="postPlaylist()">
+                    Create playlist
+                </button>
+                <button class="btn btn-outline-secondary mr-3" style="width: 80px" type="button"
+                    title="Cancel the changes"
+                    [routerLink]="['/songs']">
+                    Back
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

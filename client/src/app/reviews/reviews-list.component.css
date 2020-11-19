@@ -1,0 +1,12 @@
+.wpbr-collection--list {
+	background: transparent !important;
+	border: none !important;
+}
+
+.wpbr-collection--list > .wpbr-collection__item {
+	background: white;
+	padding: 30px;
+	border: 1px solid #023f72 !important;
+	box-shadow: 2px 2px 3px rgba(0, 0, 0, .4);
+	border-radius: 5px;
+}

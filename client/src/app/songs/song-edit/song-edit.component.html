@@ -1,0 +1,78 @@
+<div class="card">
+  <div class="card-header">
+    Edit Song
+  </div>
+
+  <div class="card-body">
+    <form novalidate [formGroup]="songForm">
+      <fieldset>
+        <legend>Basic Song Information</legend>
+
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="songTitleId">Song Title</label>
+          <div class="col-md-8">
+            <input class="form-control" id="songTitleId" type="text" placeholder="Title (required)"
+              formControlName="songTitle" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="artistId">Artist</label>
+          <div class="col-md-8">
+            <input class="form-control" id="artistId" type="text" placeholder="Artist" forControlName="artist" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="albumId">Album</label>
+          <div class="col-md-8">
+            <input class="form-control" id="albumId" type="text" placeholder="Album (required)"
+              formControlName="album" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="yearId">Year</label>
+          <div class="col-md-8">
+            <input class="form-control" id="yearId" type="text" placeholder="Year (required)" formControlName="year" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="commentId">Comment</label>
+          <div class="col-md-8">
+            <input class="form-control" id="commentId" type="text" placeholder="Comment (required)"
+              formControlName="comment" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="genreId">Genre</label>
+          <div class="col-md-8">
+            <input class="form-control" id="genreId" type="text" placeholder="Genere (required)"
+              formControlName="genre" />
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="card-footer">
+    <div class="row md-2">
+      <div class="col-md-4">
+        <button class="btn btn-primary mr-3" style="width: 80px" type="button" title="Save your entered data"
+          (click)="onSaveClicked()">
+          Save
+        </button>
+        <button class="btn btn-outline-secondary mr-3" type="button" title="Cancel your eits"
+          (click) = "onCancelClicked()">
+          Cancel
+        </button>
+        <button class="btn btn-outline-warning" style="width: 80px" type="button" title="Delete this product"
+          (click) = "onDeleteClicked()">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

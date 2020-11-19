@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-header">
+    Add a review for this song
+  </div>
+  <div class="card-body">
+    <form [formGroup]="reviewForm">
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label" for="reviewId">Review</label>
+        <div class="col-md-8">
+          <textarea
+            class="form-control"
+            formControlName="reviewComment"
+            id="reviewId"
+            placeholder="Add a Review Commnent"
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label" for="ratingId">Rating</label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            formControlName="rating"
+            id="ratingId"
+            type="number"
+            placeholder="Add rating here"
+          />
+        </div>
+      </div>
+    </form>
+    <div class="row md-2">
+      <div class="col-md-4">
+        <button
+          class="btn btn-primary mr-3"
+          type="button"
+          title="Post Review"
+          (click)="postReview()"
+        >
+          Post Review
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

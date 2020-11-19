@@ -1,0 +1,57 @@
+<div class="card">
+    <div class="card-header">
+        Register
+    </div>
+
+    <div class="card-body">
+        <form novalidate [formGroup]="userForm">
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="fullNameId">Your Name</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="fullNameId" type="text" placeholder="Your Name (required)"
+                        formControlName="fullName" />
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="userNameId">UserName</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="userNameId" type="text" placeholder="User Name (required)"
+                        formControlName="userName" />
+                </div>
+            </div>
+
+            <div formGroupName="passwordGroup">
+                <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label" for="password">Password</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="password" type="password" placeholder="Password (required)"
+                            formControlName="password" />
+                    </div>
+                </div>
+
+                <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label" for="confirmPassword">Confirm Password</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="confirmPassword" type="password"
+                            placeholder="Confirm Password Password (required)" formControlName="confirmPassword" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group row mb-2">
+                <div class="offset-md-2 col-md-4">
+                    <button class="btn btn-primary mr-3" type="submit" (click)="registerUser()">
+                        Register
+                    </button>
+                    <button class="btn btn-seconday" type="button">
+                        Test Data
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="card">
+  <div class="card-header">
+    Song Details
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-3">Song Title:</div>
+          <div class="col-md-6">{{ song.songTitle }}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Album :</div>
+          <div class="col-md-6">{{ song.album }}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Artist:</div>
+          <div class="col-md-6">{{ song.artist }}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Year:</div>
+          <div class="col-md-6">{{ song.year }}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Comment:</div>
+          <div class="col-md-6">{{ song.comment }}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Genre:</div>
+          <div class="col-md-6">{{ song.genre }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <button
+          class="btn btn-outline-secondary mr-3"
+          style="width: 80px;"
+          [routerLink]="['/songs']"
+        >
+          <i class="fa fa-chevron-left"></i> Back
+        </button>
+        <button
+          class="btn btn-outline-primary"
+          style="width: 80px;"
+          [routerLink]="['/songs', song.id, 'edit']"
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Song Reviews
+  </div>
+  <div class="card-body">
+    <div *ngFor="let review of reviews" class="review-item">
+      <div>Review comment : {{ review.reviewComment }}</div>
+      <div>User name : {{ review.reviewer }}</div>
+      <div>Rating: {{ review.rating }}</div>
+    </div>
+  </div>
+</div>
+<div class="text-center">
+  <a
+    [routerLink]="['/reviews']"
+    class="btn btn-outline-primary"
+    [queryParams]="{ songId: song.id }"
+    >View All reviews for this songs</a
+  >
+</div>
+
+<mra-review-edit [songId]="song.id"> </mra-review-edit>

@@ -1,0 +1,32 @@
+<div class="card">
+    <div class="card-header">
+        All reviews for the songs
+    </div>
+    <div class="card-body">
+        <div class = "list-group-item" *ngFor="let review of reviews">
+            <div class="row ">
+                <div class="col-md-3">Review Text:</div>
+                <div class="col-md-6"> {{review.reviewComment}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">Rating:</div>
+                <div class="col-md-6"> {{review.rating}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">Review User name:</div>
+                <div class="col-md-6"> {{review.reviewer}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <div class="row md-2">
+            <div class="col-md-4">
+                <button class="btn btn-primary mr-3" style="width: 80px" type="button" title="Navigate Back"
+                    (click)="navigateBack()">
+                    Back
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
