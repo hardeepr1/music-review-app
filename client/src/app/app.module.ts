@@ -8,11 +8,15 @@ import { ReviewsListComponent } from './reviews/reviews-list.component';
 import { AuthInterceptor } from './user/auth.interceptor';
 import { UserModule } from './user/user.module';
 import { SongModule } from './songs/song.module';
+import { CommonModule } from '@angular/common';
 import { PlaylistEditComponent } from './playlists/playlist-edit.component';
 import { SharedModule } from './shared/shared.module';
-import { CommonModule } from '@angular/common';
 import { PlaylistsComponent } from './playlists/playlists.component';
 import { HomeComponent } from './home/home.component';
+
+import { FontAwesomeModule, FaIconLibrary  } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +25,7 @@ import { HomeComponent } from './home/home.component';
     PlaylistEditComponent,
     PlaylistsComponent,
     HomeComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -29,6 +34,7 @@ import { HomeComponent } from './home/home.component';
     UserModule,
     SongModule,
     AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [
     {
@@ -39,4 +45,9 @@ import { HomeComponent } from './home/home.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas);
+  }
+}

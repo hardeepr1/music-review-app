@@ -1,0 +1,28 @@
+.section-container {
+  font-family: "Open Sans Condensed", sans-serif;
+  padding: 30px 90px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  word-spacing: 2px;
+  font-size: 18px;
+}
+
+section {
+  padding: 40px;
+}
+
+fa-icon {
+  font-size: 40px;
+  color: #f1788d;
+  padding-bottom: 20px;
+}
+
+.brief-description {
+  font-weight: bold;
+}
+
+.description {
+  color: #6f6f6f;
+  padding-top: 7px;
+}
