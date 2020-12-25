@@ -8,7 +8,6 @@ function routes() {
 
   songRouter.use('/open', (req,res,next) =>{
     console.log(req.path);
-    console.log("router middleware called");
     next();
   });
 

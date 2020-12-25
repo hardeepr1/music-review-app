@@ -40,3 +40,62 @@
     font-size: 18px;
   }
 }
+
+.songs-component-cntr {
+  font-family: "Times New Roman", Times, serif;
+  padding: 30px;
+  background: #f3f3f3;
+}
+
+.song-details-container {
+  width: 90%;
+  margin: auto;
+}
+
+.header-text {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+input {
+  background: transparent;
+  width: 200px;
+}
+
+.song-list-container {
+  padding: 20px 0;
+}
+
+.song-item-container {
+  background: #fff;
+  padding: 15px;
+  border-radius: 3px;
+  margin-bottom: 15px;
+}
+
+.song-title {
+  font-size: 20px;
+  font-weight: bold;
+  opacity: 0.8;
+  text-transform: capitalize;
+}
+
+.song-title > span {
+  opacity: 0.7;
+}
+
+.song-attributes {
+  padding-top: 5px;
+}
+
+.song-attributes > span {
+  border-right: 1px solid #46464673;
+  margin-right: 15px;
+  padding-right: 15px;
+  font-size: 14px;
+  color: #868686;
+}
+
+.song-attributes > span:last-child {
+  border-right: 0px;
+}

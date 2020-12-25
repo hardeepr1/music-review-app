@@ -1,41 +1,31 @@
-<div class="card">
-  <div class="card-header">
-    Songs List
-  </div>
-
-  <div class="card-body">
-    <div class="row">
-      <div class="col-md-2">Search Song:</div>
-      <div class="col-md-4">
-        <input type="text" [(ngModel)]="songFilter" />
+<div class="songs-component-cntr">
+  <div class="song-details-container">
+    <div class="header">
+      <div class="header-text">Top 10 Songs</div>
+      <div class="search-container">
+        <input
+          type="text"
+          name=""
+          value=""
+          placeholder="Search song, artsit, genre "
+          class="search"
+        />
       </div>
     </div>
 
-    <div class="table-responsive">
-      <table class="table mb-0">
-        <thead class="thead-light">
-          <th>Title</th>
-          <th>Artist</th>
-          <th>Album</th>
-          <th>Year</th>
-          <th>Comment</th>
-          <th>Genre</th>
-          <th></th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let song of filteredSongs">
-            <td>{{ song.songTitle }}</td>
-            <td>{{ song.artist }}</td>
-            <td>{{ song.album }}</td>
-            <td>{{ song.year }}</td>
-            <td>{{ song.comment }}</td>
-            <td>{{ song.genre }}</td>
-            <td>
-              <a [routerLink]="['/songs', song.id]">Show Details</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="song-list-container">
+      <div class="song-item-container" *ngFor="let song of songs">
+        <div class="song-details">
+          <p class="song-title">
+            {{ song.songTitle }} <span>({{ song.year }})</span>
+          </p>
+          <div class="song-attributes">
+            <span>ARTIST: {{ song.artist }}</span>
+            <span>ALBUM: {{ song.album }}</span>
+            <span>GENRE: {{ song.genre }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

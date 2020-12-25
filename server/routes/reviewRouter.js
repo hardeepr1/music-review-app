@@ -6,12 +6,7 @@ function routes() {
   const reviewRouter = express.Router();
 
   reviewRouter.route('/secure/review').post((req, res) => {
-    //for time everything is set on request body like individual properties
-    console.log(req.body);
     const review = new Review(req.body);
-
-    console.log('here in review post');
-    //need to good error handling
     review.save();
     res.status(201);
     return res.json(review);
