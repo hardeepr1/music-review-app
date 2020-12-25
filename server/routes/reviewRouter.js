@@ -1,22 +1,24 @@
 const express = require('express');
 const Review = require('../models/Review');
 
-//todo: validation and other things
 function routes() {
   const reviewRouter = express.Router();
 
-  reviewRouter.route('/secure/review').post((req, res) => {
+  reviewRouter.route('/secure/review').post((req, res, next) => {
     const review = new Review(req.body);
-    review.save();
-    res.status(201);
-    return res.json(review);
+
+    review.save((error, sReview) => {
+      if (error) {
+        next(error);
+      }
+      return res.status(201).json(sReview);
+    });
   });
 
-  //this implementation may be needed to changed for supporting all songs
-  reviewRouter.route('/secure/review/:songId').get((req, res) => {
+  reviewRouter.route('/secure/review/:songId').get((req, res, next) => {
     Review.find({ songId: req.params.songId }, (err, reviews) => {
       if (err) {
-        return res.send(err);
+        next(err);
       }
       if (reviews) {
         return res.json(reviews);
@@ -25,10 +27,10 @@ function routes() {
     });
   });
 
-  reviewRouter.route('/secure/review/:songId').delete((req, res) => {
-    Review.deleteOne({ songId: req.params.songId }, function (err) {
+  reviewRouter.route('/secure/review/:songId').delete((req, res, next) => {
+    Review.deleteOne({ songId: req.params.songId }, (err) => {
       if (err) {
-        res.send(err);
+        next(err);
       }
       res.sendStatus(200);
     });

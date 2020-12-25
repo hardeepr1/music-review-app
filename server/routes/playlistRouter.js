@@ -2,49 +2,41 @@ const express = require('express');
 const PlayList = require('../models/PlayList');
 
 function routes() {
-    const playListRouter = express.Router();
-    
-    playListRouter.route('/secure/playlist').get((req, res) =>{
-        console.log("In playlist");
-        
-        PlayList.find({},function(err, playLists){
+  const playListRouter = express.Router();
 
-            if (err) {
-                return res.send(err);
-            }
-
-            console.log(playLists);
-            return res.json(playLists);
-        });
+  // METHOD TO ALL PLAYLISTS
+  playListRouter.route('/secure/playlist').get((req, res, next) => {
+    PlayList.find({}, (error, playLists) => {
+      if (error) {
+        next(error);
+      }
+      return res.json(playLists);
     });
+  });
 
-    playListRouter.route('/secure/playlist/:playListId').get((req, res) =>{
-        console.log("In playlist");
-        console.log(req.params.playListId);
-
-        PlayList.findById(req.params.playListId, function(err, playList){
-
-            if (err) {
-                return res.send(err);
-            }
-
-            console.log(playList);
-            return res.json(playList);
-        });
+  // METHOD TO GET PLAYLIST BY ID
+  playListRouter.route('/secure/playlist/:playListId').get((req, res, next) => {
+    PlayList.findById(req.params.playListId, (error, playList) => {
+      if (error) {
+        next(error);
+      }
+      return res.json(playList);
     });
+  });
 
+  // METHOD TO CREATE A PLAYLIST
+  playListRouter.route('/secure/playlist').post((req, res, next) => {
+    const playList = new PlayList(req.body);
 
-    playListRouter.route('/secure/playlist').post((req, res) => {
-
-        const playList = new PlayList(req.body);
-
-        //todo good error handling 
-        playList.save();
-        res.status(201);
-        return res.json(playList);
+    playList.save((error, savePlayList) => {
+      if (error) {
+        next(error);
+      }
+      return res.status(201).json(savePlayList);
     });
-  
-    return playListRouter;
-  }
-  
-  module.exports = routes;
+  });
+
+  return playListRouter;
+}
+
+module.exports = routes;

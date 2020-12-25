@@ -18,7 +18,7 @@ mongoose.connect(url);
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extensed: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(session({ secret: 'library' }));
 
@@ -41,8 +41,10 @@ app.use('/api/auth', authRouter);
 // for time being may be
 // app.use('/api/admin', adminRouter);
 
-app.get('/', (req, res) => {
-  res.send('Welcome to my API');
+app.use((error, req, res, next) => {
+  return res.status(error.status || 500).send({
+    errorMessage: error.message || 'Internal Server Error',
+  });
 });
 
 app.listen(port, () => {

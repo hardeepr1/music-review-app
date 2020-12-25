@@ -1,15 +1,10 @@
 const express = require('express');
 const Song = require('../models/Song');
-const songController = require("../controllers/songController");
+const songController = require('../controllers/songController');
 
 function routes() {
   const songRouter = express.Router();
   const controller = songController(Song);
-
-  songRouter.use('/open', (req,res,next) =>{
-    console.log(req.path);
-    next();
-  });
 
   songRouter.route('/open/songs').get(controller.get);
 

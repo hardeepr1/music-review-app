@@ -36,12 +36,16 @@ export class SongService {
       )
   }
 
-  handleError(error){
-    console.log("Error has occured");
-    // return an observable with a user-facing error message
-    return throwError(
-      'Something bad happened; please try again later.');
+  createSong(song: Song): Observable<Song>{
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = `${this.securePrefix}/song`;
+    return this.http.post<Song>(url, song, { headers: headers }).pipe(catchError(this.handleError));
   }
+
+  handleError(err: any): Observable<any>{
+    return throwError(err);
+  }
+
 
   updateSong(song: Song): Observable<Song> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

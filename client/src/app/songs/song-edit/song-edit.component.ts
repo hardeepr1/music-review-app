@@ -68,8 +68,11 @@ export class SongEditComponent implements OnInit {
     if (this.songForm.dirty) {
       const p = { ...this.song, ...this.songForm.value };
 
-      if (p.id === 0) {
-        //create product code goes here
+      if (p.id === "0") {
+        this.songService.createSong(p).subscribe({
+          next: () => this.onSaveComplete(),
+          error: (err) => (this.errorMessage = err.error.errorMessage),
+        });
       } else {
         this.songService.updateSong(p).subscribe({
           next: () => this.onSaveComplete(),

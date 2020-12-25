@@ -1,15 +1,23 @@
 function songController(Song) {
-  function post(req, res) {
-    // for time everything is set on request body
+  // Method to create a new song
+  function post(req, res, next) {
     const song = new Song(req.body);
-    // need to good error handling
-    song.save();
-    res.status(201);
-    return res.json(song);
+
+    song.save((err, savedSong) => {
+      if (err) {
+        // Handled by Error handler middleware
+        next(err);
+      }
+      return res.status(201).json(savedSong);
+    });
   }
 
-  function get(req, res) {
+  // Method to get a new song
+  function get(req, res, next) {
     Song.find({}, (err, songs) => {
+      if (err) {
+        next(err);
+      }
       const returnedSongs = [];
       songs.forEach((song) => {
         returnedSongs.push(song.transform());
@@ -18,10 +26,11 @@ function songController(Song) {
     });
   }
 
-  function getBySongId(req, res) {
+  // Method to get Song By Id
+  function getBySongId(req, res, next) {
     Song.findById(req.params.id, (err, song) => {
       if (err) {
-        return res.send(err);
+        next(err);
       }
 
       if (song) {
@@ -32,16 +41,21 @@ function songController(Song) {
     });
   }
 
-  function deleteBySongId(req, res) {
+  function deleteBySongId(req, res, next) {
     Song.deleteOne({ _id: req.params.id }, (err) => {
       if (err) {
-        res.send(err);
+        next(err);
       }
       res.sendStatus(200);
     });
   }
 
-  return { post, get, getBySongId, deleteBySongId };
+  return {
+    post,
+    get,
+    getBySongId,
+    deleteBySongId,
+  };
 }
 
 module.exports = songController;
