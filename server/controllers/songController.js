@@ -1,4 +1,5 @@
 function songController(Song) {
+
   // Method to create a new song
   function post(req, res, next) {
     const song = new Song(req.body);

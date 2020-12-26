@@ -1,40 +1,22 @@
 const express = require('express');
 const PlayList = require('../models/PlayList');
+const playListController = require('../controllers/playListController');
 
 function routes() {
   const playListRouter = express.Router();
 
+  const controller = playListController(PlayList);
+
   // METHOD TO ALL PLAYLISTS
-  playListRouter.route('/secure/playlist').get((req, res, next) => {
-    PlayList.find({}, (error, playLists) => {
-      if (error) {
-        next(error);
-      }
-      return res.json(playLists);
-    });
-  });
+  playListRouter.route('/secure/playlist').get(controller.get);
 
   // METHOD TO GET PLAYLIST BY ID
-  playListRouter.route('/secure/playlist/:playListId').get((req, res, next) => {
-    PlayList.findById(req.params.playListId, (error, playList) => {
-      if (error) {
-        next(error);
-      }
-      return res.json(playList);
-    });
-  });
+  playListRouter
+    .route('/secure/playlist/:playListId')
+    .get(controller.getPlayListById);
 
   // METHOD TO CREATE A PLAYLIST
-  playListRouter.route('/secure/playlist').post((req, res, next) => {
-    const playList = new PlayList(req.body);
-
-    playList.save((error, savePlayList) => {
-      if (error) {
-        next(error);
-      }
-      return res.status(201).json(savePlayList);
-    });
-  });
+  playListRouter.route('/secure/playlist').post(controller.post);
 
   return playListRouter;
 }

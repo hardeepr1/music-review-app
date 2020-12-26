@@ -11,7 +11,6 @@ const userModel = new Schema({
 });
 
 userModel.methods.generateJWTToken = () => {
-  // more pay load can also be added
   const token = jwt.sign({ userName: this.userName }, 'secret', {
     expiresIn: 86400,
   });
