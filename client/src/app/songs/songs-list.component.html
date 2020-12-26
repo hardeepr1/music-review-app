@@ -11,6 +11,11 @@
           class="search"
         />
       </div>
+      <div class="create-playlist-button">
+        <button class="btn btn-primary" [routerLink]="['/playlist']">
+          Create Playlist
+        </button>
+      </div>
     </div>
 
     <div class="song-list-container">
@@ -24,6 +29,12 @@
             <span>ALBUM: {{ song.album }}</span>
             <span>GENRE: {{ song.genre }}</span>
           </div>
+        </div>
+
+        <div class="add-review container">
+          <button [routerLink]="['/review', '0']" class="btn btn-primary">
+            Add Review
+          </button>
         </div>
       </div>
     </div>

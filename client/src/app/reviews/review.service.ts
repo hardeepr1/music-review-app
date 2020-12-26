@@ -15,7 +15,7 @@ export class ReviewService{
 
     }
 
-    getReviews(): Observable<Review[]>{
+    get(): Observable<Review[]>{
         return this.http.get<Review[]>(this.reviewsUrl)
         .pipe(
             tap(data => console.log(JSON.stringify(data)))

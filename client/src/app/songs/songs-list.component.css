@@ -99,3 +99,7 @@ input {
 .song-attributes > span:last-child {
   border-right: 0px;
 }
+
+.create-playlist-button {
+  margin-top: 16px;
+}

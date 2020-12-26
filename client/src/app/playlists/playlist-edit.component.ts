@@ -17,7 +17,6 @@ export class PlaylistEditComponent implements OnInit {
   playlistForm: FormGroup;
   playList: PlayList;
   songs: Song[];
-  //initially for time being no song is selected actually fetch from backend server
   selectedSong: String[] = [];
 
   constructor(
@@ -68,7 +67,6 @@ export class PlaylistEditComponent implements OnInit {
   postPlaylist(): void {
     this.playList = { ...this.playList, ...this.playlistForm.value };
     this.playList.songs = this.selectedSong;
-    console.log(this.playList);
     this.playListService.createPlayList(this.playList).subscribe({
       next: (playlist) => console.log(playlist),
       error: (error) => console.log(error),

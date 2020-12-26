@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../user/auth.service';
 import { Review } from './review';
 import { ReviewService } from './review.service';
 
@@ -14,7 +15,8 @@ export class ReviewEditComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private reviewService: ReviewService
+    private reviewService: ReviewService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -36,10 +38,7 @@ export class ReviewEditComponent implements OnInit {
     if (this.reviewForm.dirty) {
       var review: Review;
       const r = { ...review, ...this.reviewForm.value };
-      //We need have songId passed from parent component
-      //r.songId = this.song.id;
-      //todo: set actual user here
-      r.reviewer = 'har';
+      r.reviewer = this.authService.getUserName();
       this.reviewService.createReview(r).subscribe({
         next: () => alert('review is posted'),
       });

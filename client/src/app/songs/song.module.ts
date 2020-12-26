@@ -27,7 +27,8 @@ import { SongListResolver } from './song-list-resolver.service';
         RouterModule.forChild([
             { path: 'songs', component: SongsListComponent, resolve: { resolvedSongs: SongListResolver} },
             { path: 'songs/:id/edit', component: SongEditComponent, resolve: { resolvedData: SongResolver } },
-            { path: 'songs/:id', component: SongDetailComponent, canActivate: [AuthGuard], resolve: { resolvedData: SongResolver } }
+            { path: 'songs/:id', component: SongDetailComponent, canActivate: [AuthGuard], resolve: { resolvedData: SongResolver } },
+            { path: 'review/:id', component: ReviewEditComponent, canActivate: [AuthGuard] }
         ])
     ]
 })

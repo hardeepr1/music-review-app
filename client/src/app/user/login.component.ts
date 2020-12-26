@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   pageTitle: string = 'Log In';
   loginForm: FormGroup;
-
+  errorMessage: String;
+  
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
       const password = this.loginForm.value.password;
       this.authService.login(username, password).subscribe({
         next: (response) => this.loginSuccess(response),
+        error: (err) => (this.errorMessage = err.error.errorMessage),
       });
     } else {
       //show the message

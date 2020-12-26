@@ -4,7 +4,6 @@ const passport = require('passport');
 const debug = require('debug')('app:authRoutes');
 
 const authRouter = express.Router();
-// todo: //for time being on authentication we are just returning token
 function router(User) {
   authRouter.route('/signUp').post(async (req, res) => {
     let user = await User.findOne({ userName: req.body.userName });
@@ -23,10 +22,7 @@ function router(User) {
       }
       const token = user.generateJWTToken();
 
-      // for time being we are just sending the token only after registering the user
-      // we can send other some other as required things also question is why some other things are required will have to do some study
-      // what other things and why.
-      res.status(200).send({ auth: true, token: token });
+      res.status(200).send({ auth: true, token });
     });
   });
 
@@ -42,13 +38,6 @@ function router(User) {
     .get((req, res) => {
       res.json(req.user);
     });
-  authRouter.route('/signUp').get((req, res) => {
-    res.send('here in signup');
-  });
-
-  authRouter.route('/signin').get((req, res) => {
-    const { user } = req.body;
-  });
 
   authRouter.route('/signin').post((req, res, next) => {
     passport.authenticate(
@@ -66,7 +55,8 @@ function router(User) {
 
           const responseObject = {
             userName: user.userName,
-            token: token,
+            token,
+            isAdmin: user.isAdmin,
           };
           return res.json(responseObject);
         }
